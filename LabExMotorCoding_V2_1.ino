@@ -17,7 +17,7 @@ const byte interruptPinZ = 40;
 const byte interruptPinH = 42;
 const byte interruptPinV = 44;
 
-
+// set pin of stepper motor
 const byte ENPinX = 22;
 const byte STEPPinX = 2;
 const byte DIRPinX = 23;
@@ -43,8 +43,9 @@ const byte ENPinD = 34;
 const byte STEPPinD = 8;
 const byte DIRPinD = 35;
 
+//set pin of servo motor
 const byte Servopin = 9;
-
+//set pin of solenoid
 const byte Solenoidpin = 10;
 
 int steppermm = 25 ;
@@ -237,7 +238,7 @@ void checkSerial()
               for(pos = 180; pos>=0; pos-=1)     // goes from 180 degrees to 0 degrees 
   {                                
       myservo.write(pos);              // tell servo to go to position in variable 'pos' 
-      delay(0.01);                       // waits 15ms for the servo to reach the position
+      delay(0.01);                       // waits for the servo to reach the position
   } 
       stepperX.move(receivedMMdistanceX);
       stepperY.move(-receivedMMdistanceY);
@@ -247,7 +248,8 @@ void checkSerial()
 
 
     }
-
+   
+   // you will get command as a letter from ESP8266 and action will start from your code.
       if (receivedCommand == 'b') // HomeX
     {
       runallowedX = true;
@@ -790,7 +792,7 @@ void stopDmotor()
 }
 void Servo1()
 {
-    for(pos = 180; pos > 0; pos -= 1)  // goes from 0 degrees to 180 degrees กาง
+    for(pos = 180; pos > 0; pos -= 1)  // goes from 0 degrees to 180 degrees
 {                                      // in steps of 1 degree 
     myservo.write(pos);                // tell servo to go to position in variable 'pos' 
     delay(0.01);                       // waits 15ms for the servo to reach the position 
@@ -800,7 +802,7 @@ void Servo1()
 
 void Servo2()
 {
-    for(pos = 0; pos< 180; pos+=1)     // goes from 180 degrees to 0 degrees หุบ
+    for(pos = 0; pos< 180; pos+=1)     // goes from 180 degrees to 0 degrees
   {                                
     myservo.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(0.01);                       // waits 15ms for the servo to reach the position
@@ -817,6 +819,7 @@ void Solenoid()
 }
 }
 
+// this part is about stepback of motor
 
 void stepbackX()
 {
